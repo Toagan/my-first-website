@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tilman Schepke - Essays</title>
+    <title>Tilman Schepke - Essays and Writings</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -57,25 +57,25 @@
             font-size: 2.5rem;
             margin: 40px 0;
         }
-        .essays-grid {
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
-        .essay-card {
+        .project-card {
             background-color: #111;
             padding: 20px;
             border-radius: 10px;
         }
-        .essay-card h2 {
+        .project-card h2 {
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
-        .essay-card p {
+        .project-card p {
             font-size: 1rem;
             margin-bottom: 15px;
         }
-        .essay-card a {
+        .project-card a {
             display: inline-block;
             background-color: var(--accent-color);
             color: var(--text-color);
@@ -85,7 +85,28 @@
             font-weight: 600;
             transition: background-color 0.3s ease;
         }
-        .essay-card a:hover {
+        .project-card a:hover {
+            background-color: #0d8c6f;
+        }
+        .links {
+            margin-top: 40px;
+        }
+        .links h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .links a {
+            display: inline-block;
+            margin-right: 20px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .links a:hover {
             background-color: #0d8c6f;
         }
     </style>
@@ -96,7 +117,7 @@
             <nav>
                 <a href="index.html" class="logo">Tilman Schepke</a>
                 <ul>
-                    <li><a href="essays.html">Essays</a></li> <!-- Updated link -->
+                    <li><a href="essays.html">Essays and Writings</a></li> <!-- Updated link -->
                     <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
@@ -105,24 +126,31 @@
 
     <main>
         <div class="container">
-            <h1>Essays</h1> <!-- Updated header -->
-            <div class="essays-grid">
-                <div class="essay-card">
+            <h1>Essays and Writings</h1> <!-- Updated header -->
+            <div class="projects-grid">
+                <div class="project-card">
                     <h2>Essay 1: The Impact of Technology on Society</h2>
                     <p>A deep dive into how technology shapes social dynamics, economics, and cultural change.</p>
                     <a href="#">Read Essay</a>
                 </div>
-                <div class="essay-card">
-                    <h2>Essay 2: Exploring Sustainable Business Practices</h2>
+                <div class="project-card">
+                    <h2>Writing 2: Exploring Sustainable Business Practices</h2>
                     <p>An analysis of innovative strategies for sustainability in modern businesses.</p>
-                    <a href="#">Read Essay</a>
+                    <a href="#">Read Writing</a>
                 </div>
-                <div class="essay-card">
+                <div class="project-card">
                     <h2>Essay 3: The Future of Remote Work</h2>
                     <p>An exploration of remote work trends and their long-term implications for the workforce.</p>
                     <a href="#">Read Essay</a>
                 </div>
-                <!-- Add more essay cards as needed -->
+                <!-- Add more project cards as needed -->
+            </div>
+
+            <!-- New Links Section -->
+            <div class="links">
+                <h2>Links</h2>
+                <a href="https://github.com/Toagan" target="_blank">GitHub</a>
+                <a href="https://www.kaggle.com/tilmanschepke" target="_blank">Kaggle</a>
             </div>
         </div>
     </main>
