@@ -81,6 +81,19 @@
             position: relative;
             z-index: 1;
         }
+        .profile-picture {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            border: 4px solid var(--text-color);
+        }
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         h1 {
             font-size: 4rem;
             margin-bottom: 20px;
@@ -134,6 +147,9 @@
     <main>
         <section class="hero">
             <div class="hero-content">
+                <div class="profile-picture">
+                    <img src="/api/placeholder/200/200" alt="Tilman Schepke">
+                </div>
                 <h1>Hi, I am Tilman.</h1>
                 <p>I am currently working in big tech, and upskilling in Cloud (AWS tech.), Coding (Python, CSS, HTML, etc.), Data Science, Digital Marketing & Product Management. </p>
                 <p>Feel free to check out my different explorations below...</p>
