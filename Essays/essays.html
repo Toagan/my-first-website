@@ -58,8 +58,8 @@
             margin: 40px 0;
         }
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            display: flex;
+            justify-content: space-between;
             gap: 20px;
         }
         .project-card {
@@ -68,14 +68,14 @@
             border-radius: 10px;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            width: calc(25% - 15px);
         }
         .project-card h2 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
         }
         .project-card p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 15px;
             flex-grow: 1;
         }
@@ -91,27 +91,6 @@
             align-self: flex-start;
         }
         .project-card a:hover {
-            background-color: #0d8c6f;
-        }
-        .links {
-            margin-top: 40px;
-        }
-        .links h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        .links a {
-            display: inline-block;
-            margin-right: 20px;
-            background-color: var(--accent-color);
-            color: var(--text-color);
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .links a:hover {
             background-color: #0d8c6f;
         }
     </style>
@@ -131,7 +110,7 @@
 
     <main>
         <div class="container">
-            <h1>Works</h1>
+            <h1>Notes</h1>
             <div class="projects-grid">
                 <div class="project-card">
                     <h2>Notes on Peter Thiel's Ideas</h2>
@@ -153,12 +132,6 @@
                     <p></p>
                     <a href="Essays/pg.html">Read Essay</a>
                 </div>
-            </div>
-
-            <div class="links">
-                <h2>Links</h2>
-                <a href="https://github.com/Toagan" target="_blank">GitHub</a>
-                <a href="https://www.kaggle.com/tilmanschepke" target="_blank">Kaggle</a>
             </div>
         </div>
     </main>
