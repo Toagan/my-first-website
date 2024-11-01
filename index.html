@@ -1,115 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Head section remains the same until the additional styles -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Tilman Schepke - Personal Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>🚀 Tilman Schepke</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <style>
-        /* Previous styles remain the same until .hero */
-
-        .hero {
-            min-height: 100vh;
-            padding-top: 80px; /* Account for fixed header */
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            position: relative;
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #2563eb;
+            --border-color: #e5e5e5;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, 
-                                    rgba(41,98,255,0.1) 0%, 
-                                    rgba(0,0,0,0.8) 100%);
+            background: var(--bg-color);
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .main-content {
+            margin-top: 6rem;
+            min-height: calc(100vh - 6rem);
         }
 
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 24px;
-            padding: 24px;
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-            min-height: calc(100vh - 80px);
         }
 
         .grid-item {
-            background: rgba(17, 17, 17, 0.95);
-            border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .grid-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
         }
 
         .grid-item h2 {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
         }
 
         .about-section {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            gap: 1rem;
         }
 
-        .about-section .profile-picture {
-            width: 150px;
-            height: 150px;
-            margin-bottom: 24px;
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .about-section h1 {
-            font-size: 2rem;
-            margin-bottom: 16px;
+            font-size: 1.5rem;
+            font-weight: 500;
         }
 
         .about-section p {
-            font-size: 0.9rem;
-            margin-bottom: 16px;
+            color: #666;
+            font-size: 0.95rem;
         }
 
-        .writings-list, .projects-list, .socials-list {
+        .section-list {
             list-style: none;
-            padding: 0;
-        }
-
-        .writings-list li, .projects-list li, .socials-list li {
-            margin-bottom: 16px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .writings-list li:last-child, .projects-list li:last-child, .socials-list li:last-child {
-            border-bottom: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .section-link {
             color: var(--text-color);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
 
         .section-link:hover {
@@ -119,112 +130,61 @@
         @media (max-width: 768px) {
             .grid-container {
                 grid-template-columns: 1fr;
-                grid-template-rows: repeat(4, auto);
-                padding: 16px;
-                gap: 16px;
+                padding: 1rem;
             }
 
             .grid-item {
-                padding: 24px;
-            }
-
-            .about-section .profile-picture {
-                width: 120px;
-                height: 120px;
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header remains the same -->
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">
-                    <span class="logo-emoji">🚀</span>
-                    Tilman Schepke
-                </a>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="#">Explore</a>
-                        <div class="dropdown-content">
-                            <a href="projects.html">Projects</a>
-                            <a href="writings.html">Writings</a>
-                            <a href="socials.html">Socials</a>
-                        </div>
-                    </li>
-                </ul>
+                <a href="#" class="logo">🚀 Tilman Schepke</a>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="grid-container">
-                <!-- About Section -->
-                <div class="grid-item about-section">
-                    <div class="profile-picture">
-                        <img src="profile-picture.jpg" alt="Tilman Schepke">
-                    </div>
-                    <h1>Hi, I'm Tilman</h1>
-                    <p>Currently working in big tech, specializing in Cloud Architecture (AWS), Full-Stack Development, Data Science, Digital Marketing & Product Management.</p>
+    <main class="main-content">
+        <div class="grid-container">
+            <div class="grid-item about-section">
+                <div class="profile-picture">
+                    <img src="profile-picture.jpg" alt="Tilman Schepke">
                 </div>
-
-                <!-- Writings Section -->
-                <div class="grid-item">
-                    <h2>Writings</h2>
-                    <ul class="writings-list">
-                        <li>
-                            <a href="#" class="section-link">📝 Cloud Architecture Best Practices</a>
-                        </li>
-                        <li>
-                            <a href="#" class="section-link">📝 The Future of AI in Tech</a>
-                        </li>
-                        <li>
-                            <a href="#" class="section-link">📝 Data Science in Practice</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Projects Section -->
-                <div class="grid-item">
-                    <h2>Projects</h2>
-                    <ul class="projects-list">
-                        <li>
-                            <a href="#" class="section-link">💻 AWS Infrastructure Automation</a>
-                        </li>
-                        <li>
-                            <a href="#" class="section-link">🔍 Data Analysis Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#" class="section-link">🚀 Full-Stack Web Application</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Socials Section -->
-                <div class="grid-item">
-                    <h2>Socials</h2>
-                    <ul class="socials-list">
-                        <li>
-                            <a href="#" class="section-link">👔 LinkedIn</a>
-                        </li>
-                        <li>
-                            <a href="#" class="section-link">🐦 Twitter</a>
-                        </li>
-                        <li>
-                            <a href="#" class="section-link">💻 GitHub</a>
-                        </li>
-                    </ul>
-                </div>
+                <h1>Hi, I'm Tilman</h1>
+                <p>Working in big tech, focused on Cloud Architecture, Full-Stack Development, Data Science, and Product Management.</p>
             </div>
-        </section>
-    </main>
 
-    <!-- Scripts remain the same -->
-    <script>
-        // Previous scripts remain the same
-    </script>
+            <div class="grid-item">
+                <h2>Writings</h2>
+                <ul class="section-list">
+                    <li><a href="#" class="section-link">Cloud Architecture Best Practices</a></li>
+                    <li><a href="#" class="section-link">The Future of AI in Tech</a></li>
+                    <li><a href="#" class="section-link">Data Science in Practice</a></li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <h2>Projects</h2>
+                <ul class="section-list">
+                    <li><a href="#" class="section-link">AWS Infrastructure Automation</a></li>
+                    <li><a href="#" class="section-link">Data Analysis Dashboard</a></li>
+                    <li><a href="#" class="section-link">Full-Stack Web Application</a></li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <h2>Socials</h2>
+                <ul class="section-list">
+                    <li><a href="#" class="section-link">LinkedIn</a></li>
+                    <li><a href="#" class="section-link">Twitter</a></li>
+                    <li><a href="#" class="section-link">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
