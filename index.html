@@ -4,70 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tilman Schepke - Personal Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000;
+            --bg-color: #0a0a0a;
             --text-color: #ffffff;
             --accent-color: #10a37f;
+            --gradient-start: #1a237e;
+            --gradient-end: #283593;
+            --card-bg: #111111;
         }
-        body, html {
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.5;
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
+
         header {
-            padding: 10px 0;
+            padding: 16px 0;
             position: fixed;
             width: 100%;
             top: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
+
+        header.scrolled {
+            padding: 12px 0;
+            background: rgba(10, 10, 10, 0.95);
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
-            font-weight: bold;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 1.25rem;
             color: var(--text-color);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
         nav ul {
             display: flex;
             list-style-type: none;
-            padding: 0;
+            gap: 24px;
         }
-        nav ul li {
-            margin-left: 15px;
-        }
+
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 0.8rem;
-            line-height: 1;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
         }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            background: linear-gradient(45deg, #1a237e, #283593);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             position: relative;
-            overflow: hidden;
+            padding: 80px 0;
         }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -75,59 +118,93 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, transparent 0%, rgba(41,98,255,0.1) 0%, rgba(0,0,0,0.7) 100%);
+            background: radial-gradient(circle at center, 
+                                    rgba(41,98,255,0.1) 0%, 
+                                    rgba(0,0,0,0.8) 100%);
         }
+
         .hero-content {
             position: relative;
             z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
+
         .profile-picture {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
-            margin: 0 auto 30px;
-            overflow: hidden;
-            border: 4px solid var(--text-color);
+            margin: 0 auto 40px;
+            position: relative;
+            background: linear-gradient(45deg, var(--accent-color), #2ecc71);
+            padding: 4px;
         }
+
         .profile-picture img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--bg-color);
         }
+
         h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 24px;
+            line-height: 1.2;
         }
+
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin: 0 auto 32px;
+            color: rgba(255, 255, 255, 0.9);
         }
+
         .cta-button {
             display: inline-block;
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            padding: 10px 20px;
-            border-radius: 20px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 12px 28px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
+
         .cta-button:hover {
-            background-color: #e0e0e0;
+            background-color: transparent;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 163, 127, 0.3);
         }
-        .projects {
-            padding: 50px 0;
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            nav ul {
+                gap: 16px;
+            }
+
+            .profile-picture {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 32px;
+            }
         }
-        .project-card {
-            background-color: #111;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .project-card h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
         }
     </style>
 </head>
@@ -150,12 +227,24 @@
                 <div class="profile-picture">
                     <img src="profile-picture.jpg" alt="Tilman Schepke">
                 </div>
-                <h1>Hi, I am Tilman.</h1>
-                <p>I am currently working in big tech, and upskilling in Cloud (AWS tech.), Coding (Python, CSS, HTML, etc.), Data Science, Digital Marketing & Product Management. </p>
-                <p>Feel free to check out my different explorations below...</p>
+                <h1>Hi, I'm Tilman</h1>
+                <p>Currently working in big tech, specializing in Cloud Architecture (AWS), Full-Stack Development, Data Science, Digital Marketing & Product Management.</p>
+                <p>Explore my journey and projects below.</p>
                 <a href="projects.html" class="cta-button">View Projects</a>
             </div>
         </section>
     </main>
+
+    <script>
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
