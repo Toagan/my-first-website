@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tilman Schepke - Personal Portfolio</title>
+    <title>🚀 Tilman Schepke - Personal Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -61,6 +63,9 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-weight: 700;
             font-size: 1.25rem;
             color: var(--text-color);
@@ -70,6 +75,17 @@
 
         .logo:hover {
             color: var(--accent-color);
+        }
+
+        .logo-emoji {
+            font-size: 1.5rem;
+            display: inline-block;
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-emoji {
+            transform: scale(1.2) rotate(10deg);
         }
 
         nav ul {
@@ -281,7 +297,10 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">Tilman Schepke</a>
+                <a href="#" class="logo">
+                    <span class="logo-emoji">🚀</span>
+                    Tilman Schepke
+                </a>
                 <ul>
                     <li><a href="about.html">About</a></li>
                     <li class="dropdown">
