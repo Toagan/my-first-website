@@ -11,7 +11,7 @@
             --text-color: #1a1a1a;
             --accent-color: #2563eb;
             --border-color: #eaeaea;
-            --grid-bg: #fafafa;  /* Light gray background for grid spacing */
+            --grid-bg: #fafafa;
         }
 
         * {
@@ -30,6 +30,7 @@
         .main-content {
             min-height: 100vh;
             padding: 2rem;
+            padding-bottom: 6rem; /* Space for quote container */
         }
 
         .grid-container {
@@ -110,6 +111,44 @@
             color: var(--accent-color);
         }
 
+        /* Quote Container Styles */
+        .quote-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-color);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .quote-text {
+            font-size: 1rem;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .quote-text.visible,
+        .quote-author.visible {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .grid-container {
                 grid-template-columns: 1fr;
@@ -161,5 +200,63 @@
             </div>
         </div>
     </main>
+
+    <div class="quote-container">
+        <p class="quote-text"></p>
+        <p class="quote-author"></p>
+    </div>
+
+    <script>
+        const quotes = [
+            // Naval Ravikant Quotes
+            {
+                text: "Learn to sell. Learn to build. If you can do both, you will be unstoppable.",
+                author: "Naval Ravikant"
+            },
+            {
+                text: "The most important skill for getting rich is becoming a perpetual learner.",
+                author: "Naval Ravikant"
+            },
+            /* ... rest of the quotes array ... */
+        ];
+
+        const quoteText = document.querySelector('.quote-text');
+        const quoteAuthor = document.querySelector('.quote-author');
+        let currentQuoteIndex = 0;
+
+        function shuffleQuotes(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function showQuote(index) {
+            quoteText.classList.remove('visible');
+            quoteAuthor.classList.remove('visible');
+            
+            setTimeout(() => {
+                quoteText.textContent = quotes[index].text;
+                quoteAuthor.textContent = '— ' + quotes[index].author;
+                quoteText.classList.add('visible');
+                quoteAuthor.classList.add('visible');
+            }, 500);
+        }
+
+        function rotateQuotes() {
+            showQuote(currentQuoteIndex);
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        }
+
+        // Shuffle quotes initially
+        shuffleQuotes(quotes);
+        
+        // Initial quote
+        showQuote(0);
+        
+        // Rotate quotes every 3 seconds
+        setInterval(rotateQuotes, 3000);
+    </script>
 </body>
 </html>
