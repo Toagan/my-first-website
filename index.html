@@ -190,7 +190,6 @@
         <li><a href="https://affirmations-ai.vercel.app/">Affirmations Generator</a></li>
         <li><a href="https://github.com/zckly/ai-engineer-roadmap">AI Engineer Roadmap</a></li>
         <li>Hardware device concept: An expert advisor tracking system</li>
-        <li>An LLM that is active instead of passive, instead of you asking it asks you via multimodality you can just speak with it, it acts as an expert in all domains. A hardware device that records all your conversation and keeps them in store, whenver you have a question you can just press its button and it will answer based on the Mentor you wanted it to mimic. An Ai that is suggesting impact based career mentioring, you give it your CV and it asks you what you want to focus on in your career and suggest new paths to embark upon to have a meaningugl career. An adivosr with most contrariaon advice based on contrarian takes.</li>
     </ul>
     
     <h2>Socials</h2>
@@ -200,6 +199,82 @@
         <li><a href="https://github.com/Toagan">GitHub</a></li>
     </ul>
     
-    <p class="subscribe"><a href="#">Subscribe</a> for email alerts about new posts.</p>
+    <div class="subscribe">
+        <form id="subscription-form" action="#" method="POST">
+            <label for="email">Subscribe for email alerts about new posts:</label>
+            <div style="display: flex; margin-top: 8px;">
+                <input type="email" id="email" name="email" placeholder="Your email address" required style="padding: 8px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; flex: 1; font-size: 16px;">
+                <button type="submit" style="padding: 8px 16px; background-color: #333; color: white; border: 1px solid #333; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 16px;">Subscribe</button>
+            </div>
+            <div id="subscription-message" style="margin-top: 8px; font-size: 14px;"></div>
+        </form>
+        
+        <script>
+            document.getElementById('subscription-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const messageDiv = document.getElementById('subscription-message');
+                
+                // Here you would normally send the email to your backend
+                // For demonstration, we'll just show a success message
+                
+                // Simulate backend call
+                setTimeout(() => {
+                    messageDiv.textContent = `Success! ${email} has been added to the subscription list.`;
+                    messageDiv.style.color = 'green';
+                    document.getElementById('email').value = '';
+                }, 500);
+                
+                // In a real implementation, you would use fetch or axios:
+                /*
+                fetch('https://your-backend-api.com/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    messageDiv.textContent = 'Success! You are now subscribed.';
+                    messageDiv.style.color = 'green';
+                    document.getElementById('email').value = '';
+                })
+                .catch(error => {
+                    messageDiv.textContent = 'There was an error. Please try again.';
+                    messageDiv.style.color = 'red';
+                });
+                */
+            });
+            
+            // Update form colors based on dark mode
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            
+            function updateFormColors() {
+                const isInDarkMode = document.body.classList.contains('dark-mode');
+                const formInput = document.getElementById('email');
+                const formButton = document.querySelector('#subscription-form button');
+                
+                if (isInDarkMode) {
+                    formInput.style.backgroundColor = '#333';
+                    formInput.style.color = '#e0e0e0';
+                    formInput.style.borderColor = '#555';
+                    formButton.style.backgroundColor = '#555';
+                } else {
+                    formInput.style.backgroundColor = '#fff';
+                    formInput.style.color = '#333';
+                    formInput.style.borderColor = '#ccc';
+                    formButton.style.backgroundColor = '#333';
+                }
+            }
+            
+            // Initial color setup
+            updateFormColors();
+            
+            // Update when dark mode changes
+            darkModeToggle.addEventListener('change', updateFormColors);
+        </script>
+    </div>
 </body>
 </html>
