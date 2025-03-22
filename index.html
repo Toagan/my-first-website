@@ -200,61 +200,40 @@
     </ul>
     
     <div class="subscribe">
-        <form id="subscription-form" action="#" method="POST">
-            <label for="email">Subscribe for email alerts about new posts:</label>
-            <div style="display: flex; margin-top: 8px;">
-                <input type="email" id="email" name="email" placeholder="Your email address" required style="padding: 8px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; flex: 1; font-size: 16px;">
-                <button type="submit" style="padding: 8px 16px; background-color: #333; color: white; border: 1px solid #333; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 16px;">Subscribe</button>
-            </div>
-            <div id="subscription-message" style="margin-top: 8px; font-size: 14px;"></div>
-        </form>
+        <!-- Mailchimp Signup Form -->
+        <div id="mc_embed_signup">
+            <form action="https://github.us13.list-manage.com/subscribe/post?u=8a043f2f8b867e47e30ab16e9&amp;id=e08cb3a7da&amp;f_id=00d8e7e2f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                <div id="mc_embed_signup_scroll">
+                    <label for="mce-EMAIL">Subscribe for email alerts about new posts:</label>
+                    <div style="display: flex; margin-top: 8px;">
+                        <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Your email address" required style="padding: 8px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; flex: 1; font-size: 16px;">
+                        <input type="submit" name="subscribe" id="mc-embedded-subscribe" value="Subscribe" style="padding: 8px 16px; background-color: #333; color: white; border: 1px solid #333; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 16px;">
+                    </div>
+                    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+                        <input type="text" name="b_8a043f2f8b867e47e30ab16e9_e08cb3a7da" tabindex="-1" value="">
+                    </div>
+                </div>
+            </form>
+        </div>
         
-        <script>
-            document.getElementById('subscription-form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                const email = document.getElementById('email').value;
-                const messageDiv = document.getElementById('subscription-message');
-                
-                // Here you would normally send the email to your backend
-                // For demonstration, we'll just show a success message
-                
-                // Simulate backend call
-                setTimeout(() => {
-                    messageDiv.textContent = `Success! ${email} has been added to the subscription list.`;
-                    messageDiv.style.color = 'green';
-                    document.getElementById('email').value = '';
-                }, 500);
-                
-                // In a real implementation, you would use fetch or axios:
-                /*
-                fetch('https://your-backend-api.com/subscribe', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    messageDiv.textContent = 'Success! You are now subscribed.';
-                    messageDiv.style.color = 'green';
-                    document.getElementById('email').value = '';
-                })
-                .catch(error => {
-                    messageDiv.textContent = 'There was an error. Please try again.';
-                    messageDiv.style.color = 'red';
-                });
-                */
-            });
+        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+        <script type="text/javascript">
+            (function($) {
+                window.fnames = new Array(); 
+                window.ftypes = new Array();
+                fnames[0]='EMAIL';
+                ftypes[0]='email';
+            }(jQuery));
+            var $mcj = jQuery.noConflict(true);
             
             // Update form colors based on dark mode
             const darkModeToggle = document.getElementById('darkModeToggle');
             
             function updateFormColors() {
                 const isInDarkMode = document.body.classList.contains('dark-mode');
-                const formInput = document.getElementById('email');
-                const formButton = document.querySelector('#subscription-form button');
+                const formInput = document.getElementById('mce-EMAIL');
+                const formButton = document.getElementById('mc-embedded-subscribe');
                 
                 if (isInDarkMode) {
                     formInput.style.backgroundColor = '#333';
@@ -269,11 +248,14 @@
                 }
             }
             
-            // Initial color setup
-            updateFormColors();
-            
-            // Update when dark mode changes
-            darkModeToggle.addEventListener('change', updateFormColors);
+            // Wait for DOM to fully load
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initial color setup
+                setTimeout(updateFormColors, 100);
+                
+                // Update when dark mode changes
+                darkModeToggle.addEventListener('change', updateFormColors);
+            });
         </script>
     </div>
 </body>
