@@ -13,6 +13,12 @@
             padding: 40px 20px;
             color: #333;
             background-color: #f5f5f5;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background-color: #222;
+            color: #e0e0e0;
         }
         
         h1 {
@@ -46,10 +52,15 @@
         a {
             color: #000;
             text-decoration: underline;
+            transition: color 0.3s ease;
         }
         
         a:hover {
             text-decoration: underline;
+        }
+        
+        body.dark-mode a {
+            color: #9ecaff;
         }
         
         .bio {
@@ -59,9 +70,10 @@
         .switch {
             position: relative;
             display: inline-block;
-            width: 60px;
-            height: 34px;
+            width: 50px;
+            height: 24px;
             float: right;
+            margin-top: 5px;
         }
         
         .switch input {
@@ -78,35 +90,37 @@
             right: 0;
             bottom: 0;
             background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius: 34px;
+            transition: .3s;
+            border-radius: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         
         .slider:before {
             position: absolute;
             content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
             background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
+            transition: .3s;
             border-radius: 50%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
         
         input:checked + .slider {
-            background-color: #2196F3;
+            background-color: #555;
+        }
+        
+        body.dark-mode input:checked + .slider {
+            background-color: #777;
         }
         
         input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
+            box-shadow: 0 0 1px #555;
         }
         
         input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
             transform: translateX(26px);
         }
         
@@ -118,17 +132,44 @@
 <body>
     <header>
         <h1>Tilman Schepke</h1>
-        <label class="switch">
-            <input type="checkbox" checked>
+        <label class="switch" title="Toggle dark mode">
+            <input type="checkbox" id="darkModeToggle">
             <span class="slider"></span>
         </label>
     </header>
+    
+    <script>
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or prefer-color-scheme
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const savedTheme = localStorage.getItem('theme');
+        
+        // Apply saved theme or use system preference
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+        
+        // Toggle dark mode when the switch is clicked
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
     
     <p>Tilman Schepke is working at <a href="#">Amazon Web Services</a>, upskilling in all things tech.</p>
     
     <p>Previously, Tilman began his journey with charity sales at UNICEF, generating $60K in revenue. This experience taught him that conviction drives performance. He studied business at university and explored various avenues for creating impact, eventually finding his path in technology. At AWS, he focuses on enterprise sales and technical development, learning how innovation moves from idea to execution.</p>
     
-    <p>Tilman is particularly interested in helping transform cutting-edge AI research into real-world applications, believing that the biggest breakthroughs often struggle with commercialization. His passion lies at the intersection of revolutionary technology and how to bring it to market.</p>
+    <p>Tilman is particularly interested in helping transform cutting-edge AI research into real-world applications, believing that the biggest breakthroughs often struggle with commercialization.</p>
     
     <h2>Short posts</h2>
     <ul>
